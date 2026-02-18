@@ -1,0 +1,39 @@
+언어: Python
+프레임워크: FastAPI
+DB: PostgreSQL
+컨벤션: snake_case, 타입 힌트 필수
+목적: 중소기업용 회계 프로그램
+
+[모듈] 거래 처리 - 거래 입력, 유효성 검사, 저장
+
+  function validate_transaction
+    입력: transaction 객체
+    출력: { valid: bool, errors: list }
+    동작:
+      1. amount가 0 이하인지 확인
+      2. date가 유효한 날짜인지 확인
+      3. account_id가 존재하는지 확인
+      4. 결과 반환
+
+  function save_transaction
+    입력: transaction 객체
+    출력: transaction_id
+    동작:
+      1. [validate_transaction] 호출, 실패 시 오류 반환
+      2. DB에 저장
+      3. transaction_id 반환
+
+  function _get_info
+    입력: transaction_id
+    출력: transaction 객체
+    동작: transaction 정보 받아오기용 내부함수
+
+[모듈] 리포트 - 집계 및 출력
+
+  function monthly_report
+    입력: year, month
+    출력: report 객체 (총 수입, 총 지출, 순이익)
+    동작:
+      1. 해당 월의 모든 거래를 조회
+      2. 수입/지출 분류 후 집계
+      3. report 객체 생성하여 반환

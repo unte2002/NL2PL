@@ -1,0 +1,15 @@
+{
+  "name": "nl2pl",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/shared",
+    "packages/server",
+    "packages/client"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/server",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces --if-present"
+  }
+}
